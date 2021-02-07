@@ -50,7 +50,7 @@ Eine Fotobox Linux Bash Skript für den Raspberry Pi welches mit einer Pi Cam ei
 ### Der Aufbau ist jedem selbst überlassen hier nur mein Beispiel.
 
 <p align="center">
-  <img src="https://git.ts13.myds.me/puplic/photoboth/-/raw/master/info/Boden.png" width="600"/>
+  <img src="https://git.ts13.de/Nick/photoboth/-/raw/master/info/Boden.png" width="600"/>
 </p>
 
 
