@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://git.ts13.myds.me/puplic/photoboth/-/raw/master/data/Logo.png" width="300"/>
+  <img src="https://git.ts13.de/Nick/photoboth/-/raw/master/data/Logo.png" width="300"/>
 </p>
 
 # Photoboth
