@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://git.ts13.de/Nick/photoboth/-/raw/master/data/Logo.png" width="300"/>
+  <img src="https://github.com/MacAndMoreYT/Photoboth/blob/master/data/Logo.png?raw=true" width="300"/>
 </p>
 
 # Photoboth
@@ -50,7 +50,7 @@ Eine Fotobox Linux Bash Skript für den Raspberry Pi welches mit einer Pi Cam ei
 ### Der Aufbau ist jedem selbst überlassen hier nur mein Beispiel.
 
 <p align="center">
-  <img src="https://git.ts13.de/Nick/photoboth/-/raw/master/info/Boden.png" width="600"/>
+  <img src="https://github.com/MacAndMoreYT/Photoboth/blob/master/info/Boden.png?raw=true" width="600"/>
 </p>
 
 
