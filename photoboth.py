@@ -6,39 +6,37 @@
 
 import time
 import RPi.GPIO as GPIO
-import gi
 import picamera
+import time
+import pi3d
 
-gi.require_version("Gtk", "3.0")
+from __future__ import absolute_import, division, print_function, unicode_literals
 
-from gi.repository import Gtk
-from gi.repository import GLib
-from gi.repository import GObject
-from gi.repository import Gdk
+W, H = 800, 600
 
-APP_NAME = 'Photoboth'
+with picamera.PiCamera() as camera:
 
-class Main:
-    def __init__(self):
-        gladeFile       = "photoboth.glade"
-        self.builder    = Gtk.Builder()
-        self.builder.add_from_file(gladeFile)
+    camera.resolution = (W, H)
+    camera.framerate = 30s
+    camera.start_preview()
 
-        window          = self.builder.get_object("Main")
-        window.connect("delete-event", Gtk.main_quit)
-        window.show()
+    #NB layer argument below, fps as slow as needed for whatever's changing
+    DISPLAY = pi3d.Display.create(w=W, h=H, layer=4, frames_per_second=10)
+    DISPLAY.set_background(0.0, 0.0, 0.0, 0.0) # transparent
+    shader = pi3d.Shader("uv_flat")
+    CAMERA = pi3d.Camera(is_3d=False)
+    font = pi3d.Font("/usr/share/fonts/truetype/freefont/FreeSerif.ttf",
+                          (128, 255, 128, 255)) # blue green 1.0 alpha
+    keybd = pi3d.Keyboard()
+    tx = -DISPLAY.width / 2 + 150 # incr right, zero in middle
+    ty = DISPLAY.height / 2 - 50 # incr upwards
 
-    camera = picamera.PiCamera()
-    try:
-        camera.start_preview()
-        time.sleep(10)
-        camera.stop_preview()
-    finally:
-        camera.close()
-
-if __name__ == '__main__':
-    main = Main()
-    Gtk.main()
-
-
-#def capture():
+    while DISPLAY.loop_running():
+      text = pi3d.String(font=font, string=time.strftime('%H:%M:%S', time.gmtime()),
+                      camera=CAMERA, x=tx, y=ty, z=1.0, is_3d=False)
+      text.set_shader(shader)
+      text.draw()
+      time.sleep(0.1)
+      if keybd.read() == 27:
+        DISPLAY.destroy()
+        break
