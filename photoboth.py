@@ -27,6 +27,7 @@ class Main:
         window.connect("delete-event", Gtk.main_quit)
         window.show()
 
+		BUTTON_GPIO = 16
 		GPIO.setmode(GPIO.BCM)
 		GPIO.setup(BUTTON_GPIO, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 		pressed = False
