@@ -29,11 +29,11 @@ class Main:
         window.show()
 
 	try:
-    		camera.start_preview()
-    		time.sleep(10)
-    		camera.stop_preview()
+    	camera.start_preview()
+    	time.sleep(10)
+    	camera.stop_preview()
 	finally:
-    		camera.close()
+    	camera.close()
 
 if __name__ == '__main__':
     main = Main()
