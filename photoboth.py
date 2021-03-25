@@ -28,6 +28,7 @@ class Main:
         window.connect("delete-event", Gtk.main_quit)
         window.show()
 
+    camera = picamera.PiCamera()
     try:
         camera.start_preview()
         time.sleep(10)
