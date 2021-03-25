@@ -18,7 +18,7 @@ W, H = 800, 600
 with picamera.PiCamera() as camera:
 
     camera.resolution = (W, H)
-    camera.framerate = 30s
+    camera.framerate = 30
     camera.start_preview()
 
     #NB layer argument below, fps as slow as needed for whatever's changing
