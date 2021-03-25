@@ -7,7 +7,7 @@
 cat $HOME/photoboth/app/logo.asa
 # Update System and install deb
 sudo apt-get update && sudo apt-get upgrade -y
-sudo apt-get install python3 python3-dev python3-rpi.gpio python3-picamera
+sudo apt-get install python3 python3-dev python3-rpi.gpio python3-picamera python3-pil
 sudo dpkg-reconfigure locales tzdata keyboard-configuration
 # Create picam Service
 sudo cp $HOME/photoboth/config/picam.service /etc/systemd/system/
