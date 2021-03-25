@@ -12,6 +12,19 @@
       <object class="GtkFixed" id="GTKFixed">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <child>
+          <object class="GtkLabel" id="info">
+            <property name="width-request">763</property>
+            <property name="height-request">80</property>
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">label</property>
+          </object>
+          <packing>
+            <property name="x">21</property>
+            <property name="y">384</property>
+          </packing>
+        </child>
       </object>
     </child>
   </object>
