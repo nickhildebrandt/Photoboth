@@ -28,12 +28,12 @@ class Main:
         window.connect("delete-event", Gtk.main_quit)
         window.show()
 
-	try:
-    	camera.start_preview()
-    	time.sleep(10)
-    	camera.stop_preview()
-	finally:
-    	camera.close()
+    try:
+        camera.start_preview()
+        time.sleep(10)
+        camera.stop_preview()
+    finally:
+        camera.close()
 
 if __name__ == '__main__':
     main = Main()
