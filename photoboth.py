@@ -5,13 +5,13 @@
 # Photoboth for PI
 # ------------------------------------------------------------------
 
+from __future__ import absolute_import, division, print_function, unicode_literals
+
 import time
 import RPi.GPIO as GPIO
 import picamera
 import time
 import pi3d
-
-from __future__ import absolute_import, division, print_function, unicode_literals
 
 W, H = 800, 600
 
