@@ -3,7 +3,7 @@
 # [Nick Hildebrandt] MacAndMore
 #          (C)2020
 # ------------------------------------------------------------------
-
+# /dev/sda1 /home/pi/photoboth/data auto user,umask=000,utf8, 0 0
 cat $HOME/photoboth/logo.asa
 # Update System and install deb
 sudo apt-get update && sudo apt-get upgrade -y

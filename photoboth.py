@@ -3,8 +3,6 @@
 
 import picamera
 import os
-import random
-import shutil
 import time
 from PIL import Image, ImageDraw, ImageFont
 import RPi.GPIO as GPIO
@@ -49,20 +47,17 @@ def main():
             text(text = "Mache ein Foto mit dem Knopf")
             if not GPIO.input(BUTTON_GPIO):
                 if not pressed:
-                    text(text = "3")
+                    text(text = "Auf die Plätze")
                     time.sleep(1.5)
-                    text(text = "2")
+                    text(text = "Fertig?")
                     time.sleep(1.5)
-                    text(text = "1")
+                    text(text = "Cheese!")
                     time.sleep(1)
-                    date = ("cache/" + (time.strftime("%Y%m%d-%H%M%S")) + ".png")
+                    date = ("data/" + (time.strftime("%Y%m%d-%H%M%S")) + ".png")
                     text(text = " ")
                     camera.capture((date), use_video_port=False)
-                    cache = random.choice(os.listdir("cache"))
-                    capture = ("cache/" + (cache))
                     time.sleep(3)
-                    end = "data/" + (cache)
-                    shutil.move((capture), (end))
+
 
         else:
             pressed = False
