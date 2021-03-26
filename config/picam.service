@@ -1,8 +1,0 @@
-[Unit]
-Description=picam
-
-[Service]
-ExecStart=raspivid -op 100 -t 0
-
-[Install]
-WantedBy=multi-user.target

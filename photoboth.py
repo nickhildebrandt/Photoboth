@@ -3,59 +3,72 @@
 
 import picamera
 import os
+import random
+import shutil
 import time
 from PIL import Image, ImageDraw, ImageFont
+import RPi.GPIO as GPIO
+
+overlay_renderer = None
 
 def main():
-    """
-    Displayes preview on PiTFT with PiCamera.add_overlay(). Displayed animation
-    is composed of two layers; One continuously displays the input from camera
-    while another continuously gets refreshed every time a calculation is done.
-    It worls faster because the layers are divided and the original preview
-    layer does not get affected by another layer that requires some calculation
-    and image creation.
-    It, however, has a weak point. This outputs to default display device,
-    /dev/fb0. To display the same output to PiTFT, /dev/fb1, you need to use
-    rpi-fbcp and let it copy the /dev/fb0 output to /dev/fb1.
-    """
 
-    # prep picamera
+    W = 1280
+    H = 720
+    BUTTON_GPIO = 16
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(BUTTON_GPIO, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    pressed = False
+
+    def text(text):
+        global overlay_renderer
+        img = Image.new("RGBA", (1280, 720), (255, 0, 0, 0))
+        draw = ImageDraw.Draw(img)
+        draw.font = ImageFont.truetype(
+                        "/usr/share/fonts/truetype/msttcorefonts/Impact.ttf",
+                        80)
+        w, h = draw.textsize(text)
+        draw.text(((W-w)/2,(H-h)/2), text, (255, 255, 255))
+
+        if not overlay_renderer:
+            overlay_renderer = camera.add_overlay(img.tobytes(),
+                                                  layer=3,
+                                                  size=img.size,
+                                                  alpha=128);
+        else:
+            overlay_renderer.update(img.tobytes())
+
     with picamera.PiCamera() as camera:
-        camera.resolution = (1024, 768)
-        camera.rotation   = 180
+        camera.resolution = (W), (H)
         camera.crop       = (0.0, 0.0, 1.0, 1.0)
-
-        # display preview
         camera.start_preview()
 
-        # continuously updates the overlayed layer and display stats
         overlay_renderer = None
-        while True:
-            text = time.strftime('%H:%M:%S', time.gmtime())
-            img = Image.new("RGB", (1024, 768))
-            draw = ImageDraw.Draw(img)
-            draw.font = ImageFont.truetype(
-                            "/usr/share/fonts/truetype/freefont/FreeSerif.ttf",
-                            50)
-            draw.text((10,10), text, (255, 255, 255))
 
-            if not overlay_renderer:
-                """
-                If overlay layer is not created yet, get a new one. Layer
-                parameter must have 3 or higher number because the original
-                preview layer has a # of 2 and a layer with smaller number will
-                be obscured.
-                """
-                overlay_renderer = camera.add_overlay(img.tostring(),
-                                                      layer=3,
-                                                      size=img.size,
-                                                      alpha=128);
-            else:
-                overlay_renderer.update(img.tostring())
+        while True:
+            text(text = "Mache ein Foto mit dem Knopf")
+            if not GPIO.input(BUTTON_GPIO):
+                if not pressed:
+                    text(text = "3")
+                    time.sleep(1.5)
+                    text(text = "2")
+                    time.sleep(1.5)
+                    text(text = "1")
+                    time.sleep(1)
+                    date = ("cache/" + (time.strftime("%Y%m%d-%H%M%S")) + ".png")
+                    text(text = " ")
+                    camera.capture((date), use_video_port=False)
+                    cache = random.choice(os.listdir("cache"))
+                    capture = ("cache/" + (cache))
+                    time.sleep(3)
+                    end = "data/" + (cache)
+                    shutil.move((capture), (end))
+
+        else:
+            pressed = False
+        time.sleep(0.1)
+
 
 if __name__ == '__main__':
     import sys
-    try:
-        main()
-    except:
-        print 'Unexpected error : '
+    main()
