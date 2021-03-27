@@ -22,7 +22,6 @@ Eine Fotobox Linux Bash Skript für den Raspberry Pi welches mit einer Pi Cam ei
 | Artikel         | Preis              | Amazon Link                                                                                     |
 |:---------------:|:------------------:|:-----------------------------------------------------------------------------------------------:|
 | Druckschalter   | 07,99€             | https://www.amazon.de/gp/product/B0825RCZJS/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1    |
-| Carbon Folie    | 16,99€             | https://www.amazon.de/gp/product/B07MJ2NBBV/ref=ppx_yo_dt_b_asin_title_o08_s00?ie=UTF8&psc=1    |
 | Sperholzplatten | 16,95€             | https://www.amazon.de/dp/B005QM4V5C/ref=cm_sw_em_r_mt_dp_jN2SFbR2R8M3M                          |
 | Pi Cam          | 07,59€             | https://www.amazon.de/gp/product/B07CMXJLXR/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1    |
 | Rasberry Pi 3b  | 33,60€             | https://www.amazon.de/dp/B01CD5VC92/ref=cm_sw_em_r_mt_dp_wi.SFbYWETK0P                          |
@@ -69,7 +68,7 @@ $ sudo apt-get install git
 > Lade dir das Repo Herunter und entpacke es in dein Home Verzeichnis.
 
 ```shell
-$ git clone http://git.ts13.myds.me/puplic/photoboth.git
+$ git clone https://github.com/MacAndMoreYT/Photoboth.git
 ```
 ### Setup
 
@@ -104,9 +103,7 @@ Das Skript basiert auf dem im Raspberry Pi OS inbegriffenen "raspivid" und erwei
 
 ## FAQ
 
-### Frage und Antworten:
-
-Hier auf GitLab
+Hier auf Git
 
 MacAndMore: Youtube Kanahl https://www.youtube.com/channel/UCITYl7HZpDdAfpelX5oixeg
 
