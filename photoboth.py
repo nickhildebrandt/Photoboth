@@ -13,8 +13,8 @@ with open("config.json") as file:
 
 overlay_renderer = None
 
-W			= data["resolution"]["W"]
-H			= data["resolution"]["H"]
+W			= float(data["resolution"]["W"])
+H			= float(data["resolution"]["H"])
 font_size	= data["font"]["size"]
 font_art	= data["font"]["art"]
 sleep_time	= data["text"]["sleep_time"]
@@ -48,7 +48,7 @@ def main():
 			overlay_renderer.update(img.tobytes())
 
 	with picamera.PiCamera() as camera:
-		camera.resolution = float(W), float(H), framerate=fps
+		camera.resolution = (W), (H), framerate=fps
 		camera.crop       = (0.0, 0.0, 1.0, 1.0)
 		camera.start_preview()
 
