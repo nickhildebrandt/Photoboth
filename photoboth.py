@@ -26,7 +26,7 @@ def main():
 
 	def W():
 		W			= data["resolution"]["W"]
-		retun(W)
+		return(W)
 	
 	def H():
 		H			= data["resolution"]["H"]
