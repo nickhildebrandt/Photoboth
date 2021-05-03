@@ -26,12 +26,15 @@ def main():
 
 	def W():
 		W			= data["resolution"]["W"]
-		return(W)
+		retun(W)
 	
 	def H():
 		H			= data["resolution"]["H"]
 		return(H)
-		
+
+	W = W()
+	H = H()
+	
 	BUTTON_GPIO = 16
 	GPIO.setmode(GPIO.BCM)
 	GPIO.setup(BUTTON_GPIO, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -39,11 +42,11 @@ def main():
 
 	def text(text):
 		global overlay_renderer
-		img = Image.new("RGBA", (W(), H()), (255, 0, 0, 0))
+		img = Image.new("RGBA", (W, H), (255, 0, 0, 0))
 		draw = ImageDraw.Draw(img)
 		draw.font = ImageFont.truetype(font_art, font_size)
 		w, h = draw.textsize(text)
-		draw.text(((W()-w)/2,(H()-h)/2), text, (255, 255, 255))
+		draw.text(((W-w)/2,(H-h)/2), text, (255, 255, 255))
 
 		if not overlay_renderer:
 			overlay_renderer = camera.add_overlay(img.tobytes(),
@@ -54,7 +57,7 @@ def main():
 			overlay_renderer.update(img.tobytes())
 
 	with picamera.PiCamera() as camera:
-		camera.resolution = (W()), (H()), framerate=fps
+		camera.resolution = (W), (H), framerate=fps
 		camera.crop       = (0.0, 0.0, 1.0, 1.0)
 		camera.start_preview()
 
