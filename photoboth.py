@@ -48,7 +48,7 @@ def main():
 			overlay_renderer.update(img.tobytes())
 
 	with picamera.PiCamera() as camera:
-		camera.resolution = (W), (H), framerate=fps
+		camera.resolution = float(W), float(H), framerate=fps
 		camera.crop       = (0.0, 0.0, 1.0, 1.0)
 		camera.start_preview()
 
