@@ -13,16 +13,16 @@ with open("config.json") as file:
 
 overlay_renderer = None
 
-	W			= data["resolution"]["W"]
-	H			= data["resolution"]["H"]
-	font_size	= data["font"]["size"]
-	font_art	= data["font"]["art"]
-	sleep_time	= data["text"]["sleep_time"]
-	3			= data["text"]["3"]
-	2			= data["text"]["2"]
-	1			= data["text"]["1"]
-	fps			= data["foto"]["fps"]
-	pic			= data["foto"]["pic"]
+W			= data["resolution"]["W"]
+H			= data["resolution"]["H"]
+font_size	= data["font"]["size"]
+font_art	= data["font"]["art"]
+sleep_time	= data["text"]["sleep_time"]
+three		= data["text"]["3"]
+two			= data["text"]["2"]
+one			= data["text"]["1"]
+fps			= data["foto"]["fps"]
+pic			= data["foto"]["pic"]
 
 def main():
 
@@ -58,11 +58,11 @@ def main():
 			text(text = "Mache ein Foto mit dem Knopf")
 			if not GPIO.input(BUTTON_GPIO):
 				if not pressed:
-					text(text = 3)
+					text(text = three)
 					time.sleep(sleep_time)
-					text(text = 2)
+					text(text = two)
 					time.sleep(sleep_time)
-					text(text = 1)
+					text(text = one)
 					time.sleep(sleep_time)
 					date = ("data/" + (time.strftime("%Y%m%d-%H%M%S")) + (pic))
 					text(text = " ")
