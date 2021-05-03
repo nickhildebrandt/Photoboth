@@ -32,8 +32,8 @@ def main():
 		H			= data["resolution"]["H"]
 		return(H)
 
-	W = W()
-	H = H()
+	W = float(W())
+	H = float(H())
 	
 	BUTTON_GPIO = 16
 	GPIO.setmode(GPIO.BCM)
