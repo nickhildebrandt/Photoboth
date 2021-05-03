@@ -13,8 +13,8 @@ with open("config.json") as file:
 
 overlay_renderer = None
 
-W			= float(data["resolution"]["W"])
-H			= float(data["resolution"]["H"])
+W			= data["resolution"]["W"]
+H			= data["resolution"]["H"]
 font_size	= data["font"]["size"]
 font_art	= data["font"]["art"]
 sleep_time	= data["text"]["sleep_time"]
@@ -26,6 +26,8 @@ pic			= data["foto"]["pic"]
 
 def main():
 
+	W			= data["resolution"]["W"]
+	H			= data["resolution"]["H"]
 	BUTTON_GPIO = 16
 	GPIO.setmode(GPIO.BCM)
 	GPIO.setup(BUTTON_GPIO, GPIO.IN, pull_up_down=GPIO.PUD_UP)
