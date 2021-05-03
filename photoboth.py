@@ -13,8 +13,8 @@ with open("config.json") as file:
 
 overlay_renderer = None
 
-	W 			= data["resolution"]["W"]
-	H 			= data["resolution"]["H"]
+	W			= data["resolution"]["W"]
+	H			= data["resolution"]["H"]
 	font_size	= data["font"]["size"]
 	font_art	= data["font"]["art"]
 	sleep_time	= data["text"]["sleep_time"]
