@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import picamera
+from picamera import PiCamera
 import os
 import time
 import json
@@ -13,32 +13,29 @@ with open("config.json") as file:
 
 overlay_renderer = None
 
+W		= data["resolution"]["W"]
+H		= data["resolution"]["H"]
 font_size	= data["font"]["size"]
 font_art	= data["font"]["art"]
 sleep_time	= data["text"]["sleep_time"]
 three		= data["text"]["3"]
-two			= data["text"]["2"]
-one			= data["text"]["1"]
-fps			= data["foto"]["fps"]
-pic			= data["foto"]["pic"]
+two		= data["text"]["2"]
+one		= data["text"]["1"]
+light	= data["foto"]["light"]
+fps		= data["foto"]["fps"]
+pic		= data["foto"]["pic"]
 
 def main():
 
-	def W():
-		W			= data["resolution"]["W"]
-		return(W)
-	
-	def H():
-		H			= data["resolution"]["H"]
-		return(H)
-
-	W = float(W())
-	H = float(H())
-	
 	BUTTON_GPIO = 16
+	LAMPE_GPIO = 18
 	GPIO.setmode(GPIO.BCM)
 	GPIO.setup(BUTTON_GPIO, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+	GPIO.setup(LAMPE_GPIO, GPIO.OUT)
 	pressed = False
+
+	if light == "ON":
+		GPIO.output(LAMPE_GPIO, False)
 
 	def text(text):
 		global overlay_renderer
@@ -56,17 +53,18 @@ def main():
 		else:
 			overlay_renderer.update(img.tobytes())
 
-	with picamera.PiCamera() as camera:
-		camera.resolution = (data["resolution"]["W"], data["resolution"]["H"]), framerate=fps
-		camera.crop       = (0.0, 0.0, 1.0, 1.0)
-		camera.start_preview()
+	camera = PiCamera(resolution=(W, H), framerate=fps)
+	camera.crop       = (0.0, 0.0, 1.0, 1.0)
+	camera.start_preview()
 
-		overlay_renderer = None
-
+	overlay_renderer = None
+	try:
 		while True:
 			text(text = "Mache ein Foto mit dem Knopf")
 			if not GPIO.input(BUTTON_GPIO):
 				if not pressed:
+					if light == "ON":
+						GPIO.output(LAMPE_GPIO, True)
 					text(text = three)
 					time.sleep(sleep_time)
 					text(text = two)
@@ -81,12 +79,14 @@ def main():
 					camera.awb_mode = 'off'
 					camera.awb_gains = g
 					camera.capture((date), use_video_port=False)
-					time.sleep(3)
-
-
-		else:
-			pressed = False
-		time.sleep(0.1)
+					time.sleep(sleep_time)
+					if light == "ON":
+						GPIO.output(LAMPE_GPIO, False)
+			else:
+				pressed = False
+				time.sleep(0.1)
+	finally:
+		GPIO.cleanup()
 
 
 if __name__ == '__main__':

@@ -1,19 +1,19 @@
 {
     "resolution":
         {
-        "W":"1280",
-        "H":"720"
+        "W":1280,
+        "H":720
         },
 
     "font":
         {
-        "size":"80",
+        "size":80,
         "art":"/usr/share/fonts/truetype/msttcorefonts/Impact.ttf"
         },
 
     "text":
         {
-        "sleep_time":"1.5",
+        "sleep_time":1.5,
         "3":"Auf die Plätze",
         "2":"Fertig?",
         "1":"Cheese!"
@@ -21,7 +21,8 @@
 
     "foto":
         {
-        "fps":"30",
+        "light":"ON",
+        "fps":30,
         "pic":".png"
         }
 }
