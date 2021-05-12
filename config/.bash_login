@@ -1,4 +1,0 @@
-# Photoboth Auto Login
-#.bash_login
-cd photoboth
-python3 photoboth.py

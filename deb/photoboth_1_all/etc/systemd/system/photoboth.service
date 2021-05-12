@@ -1,0 +1,12 @@
+[Unit]
+Description=Photoboth
+
+[Service]
+Type=simple
+Restart=always
+User=pi
+WorkingDirectory=/opt/photoboth    
+ExecStart=python3 photoboth.py
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,3 @@
+mkdir /home/pi/data
+chown -R pi:pi /home/pi/data
+systemctl enable photoboth.service
