@@ -163,7 +163,7 @@ Tools die Benötigt werden:
 Das Pinout
 -------------------
 
-![](../../media/photoboth/pinout.jpg)
+![](https://git.ts13.de/Nick/photoboth/-/raw/master/info/pinout.png)
 
 Die Software
 -------------------
