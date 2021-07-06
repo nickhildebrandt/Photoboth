@@ -1,122 +1,225 @@
-<p align="center">
-  <img src="https://github.com/MacAndMoreYT/Photoboth/blob/master/data/Logo.png?raw=true" width="300"/>
-</p>
+Photoboth
+=========
 
-# Photoboth
+### Achtung dieser Artikel ist nicht immer aktuell. Bitte beachte sattesten den Artikel auf MacAndMore: https://macandmore.ddnss.de/projekte/photoboth
 
-Eine Fotobox Python Programm für den Raspberry Pi welches mit einer Pi Cam einen voll funktionsfähigen Automaten Bereitstellt.
-#### Wichtig: Für Mehr Infos, Link zum Blog Beitrag
-https://macandmore.ddnss.de/projekte/photoboth/
+Was ist das?
+------------
 
-## Inhalt
+Ein Fotobox Python Programm für den Raspberry Pi, welches mit einer Pi Cam einen voll funktionsfähigen Fotoautomaten bereitstellt.
+ Das Skript basiert auf "Python-PiCamera" und erweitert dieses in Formen der Automationen, sowie dem Nutzererlebnis. Jeder kann sehr gerne dieses Skript erweitern und dazu beitragen.
 
-- Vorausetzungen
-- Aufbau
-- Installation
-- Verwendung
-- Entwicklung
-- FAQ
-- Credits
-- Lizenz
+Was geschieht mit meinem Pi?
+----------------------------
 
-## Vorausetzungen (Mein Einkauf vom 17.11.20)
+Der Pi startet nach der Installation automatisch in die CLI und meldet sich an. Danach wird das Photoboth Skript gestartet und es kann mit dem Druck der Taste ein Foto ausgelöst werden. Dieses wird nach der Ausgabe „Vielen Dank - gespeichert" in dem Ordner \$HOME/photoboth/data verschoben und kann mit sftp:22 heruntergeladen werden.
+ Alternativ kann beim Start auch ein USB-Stick eingesteckt werden, nun wird dieser automatisch in /home/pi/photoboth/data eingebunden. Daraufhin steht dieser dem System als primäres Speichermedium für die Bilder zur Verfügung und kann einfach am PC ausgelesen werden.
 
-| Artikel         | Preis              | Amazon Link                                                                                     |
-|:---------------:|:------------------:|:-----------------------------------------------------------------------------------------------:|
-| Druckschalter   | 07,99€             | https://www.amazon.de/gp/product/B0825RCZJS/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1    |
-| Sperholzplatten | 16,95€             | https://www.amazon.de/dp/B005QM4V5C/ref=cm_sw_em_r_mt_dp_jN2SFbR2R8M3M                          |
-| Pi Cam          | 07,59€             | https://www.amazon.de/gp/product/B07CMXJLXR/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1    |
-| Rasberry Pi 3b  | 33,60€             | https://www.amazon.de/dp/B01CD5VC92/ref=cm_sw_em_r_mt_dp_wi.SFbYWETK0P                          |
-| Netzteil (2x)   | 10,99€             | https://www.amazon.de/dp/B01566WOAG/ref=cm_sw_em_r_mt_dp_el.SFb8HM8T75?_encoding=UTF8&psc=1     |
-| SD Karte 128GB  | 17,04€             | https://www.amazon.de/dp/B073JYC4XM/ref=cm_sw_em_r_mt_dp_mm.SFb9HCWJFZ                          |
-| Steckerleiste 3 | 03,89€             | https://www.amazon.de/dp/B00006J9XX/ref=cm_sw_em_r_mt_dp_Sn.SFbC4GTRD7                          |
-| F2F Kabel       | 04,33€             | https://www.amazon.de/dp/B07KYHBVR7/ref=cm_sw_em_r_mt_dp_egaTFbHWN9CGD                          |
-| Display         | 89,99€             | https://www.amazon.de/gp/product/B06XWVLNMT/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1    |
-| Lüfter          | 04,99€             | https://www.amazon.de/gp/product/B071CL82G9/ref=ppx_od_dt_b_asin_title_s02?ie=UTF8&psc=1        |
-| HDMI Kabel 0,25 | 04,89€             | https://www.amazon.de/dp/B013ICNQLQ/ref=cm_sw_em_r_mt_dp_dlC_WynTFbMCMF2GY                      |
-| **Insgesamt**   | **202,61€**        | *Nach eigenem ermessen                                                                          |
+Das Fotoboxprojekt
+------------------
 
-### Was Ihr sonst noch Braucht
+Ich habe bereits, aufgrund von großem Interesse, das Fotoboxprojekt in Schulen umgesetzt. Hier hatten Schülerinnen und Schüler die Möglichkeit, sich mit Mikroelektronik und Python Programmierung zu beschäftigen. Wer Anregung sucht, findet [hier eine PDF](../../media/photoboth/Photobox%20Projekt%20–%20Ablauf%20und%20Planung.pdf)mit allen Projektinformationen und erhält einen Vorschlag für den Zusammenbau.
 
-  - Raspberry PI OS (Frische Installation) 
-  - Heizkleber
-  - Kleine, Dünne Schrauben
-  - Lötkolben mit Lötzin
-  - Zeit und Nerven :-)
+Was wird Benötigt?
+------------------
 
-## Aufbau
+<table>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+<thead>
+<tr class="header">
+<th align="left">Artikel</th>
+<th align="left">Preis</th>
+<th align="left">Amazon Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Druckschalter</td>
+<td align="left">07,99€</td>
+<td align="left"><a href="https://www.amazon.de/gp/product/B0825RCZJS/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&amp;psc=1"></a>
+<p>Zum Artikel</p></td>
+</tr>
+<tr class="even">
+<td align="left">Sperrholzplatten</td>
+<td align="left">16,95€</td>
+<td align="left"><a href="https://www.amazon.de/dp/B005QM4V5C/ref=cm_sw_em_r_mt_dp_jN2SFbR2R8M3M"></a>
+<p>Zum Artikel</p></td>
+</tr>
+<tr class="odd">
+<td align="left">Pi Cam</td>
+<td align="left">07,59€</td>
+<td align="left"><a href="https://www.amazon.de/gp/product/B07CMXJLXR/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&amp;psc=1"></a>
+<p>Zum Artikel</p></td>
+</tr>
+<tr class="even">
+<td align="left">Raspberry Pi 3b</td>
+<td align="left">33,60€</td>
+<td align="left"><a href="https://www.amazon.de/dp/B01CD5VC92/ref=cm_sw_em_r_mt_dp_wi.SFbYWETK0P"></a>
+<p>Zum Artikel</p></td>
+</tr>
+<tr class="odd">
+<td align="left">Netzteil (2x)</td>
+<td align="left">10,99€</td>
+<td align="left"><a href="https://www.amazon.de/dp/B01566WOAG/ref=cm_sw_em_r_mt_dp_el.SFb8HM8T75?_encoding=UTF8&amp;psc=1"></a>
+<p>Zum Artikel</p></td>
+</tr>
+<tr class="even">
+<td align="left">SD Karte 128GB</td>
+<td align="left">17,04€</td>
+<td align="left"><a href="https://www.amazon.de/dp/B073JYC4XM/ref=cm_sw_em_r_mt_dp_mm.SFb9HCWJFZ"></a>
+<p>Zum Artikel</p></td>
+</tr>
+<tr class="odd">
+<td align="left">Steckerleiste 3</td>
+<td align="left">03,89€</td>
+<td align="left"><a href="https://www.amazon.de/dp/B00006J9XX/ref=cm_sw_em_r_mt_dp_Sn.SFbC4GTRD7"></a>
+<p>Zum Artikel</p></td>
+</tr>
+<tr class="even">
+<td align="left">F2F Kabel</td>
+<td align="left">04,33€</td>
+<td align="left"><a href="https://www.amazon.de/dp/B07KYHBVR7/ref=cm_sw_em_r_mt_dp_egaTFbHWN9CGD"></a>
+<p>Zum Artikel</p></td>
+</tr>
+<tr class="odd">
+<td align="left">Display</td>
+<td align="left">89,99€</td>
+<td align="left"><a href="https://www.amazon.de/gp/product/B06XWVLNMT/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&amp;psc=1"></a>
+<p>Zum Artikel</p></td>
+</tr>
+<tr class="even">
+<td align="left">Lüfter 120mm (1-2x)</td>
+<td align="left">04,99€</td>
+<td align="left"><a href="https://www.amazon.de/F12-120-Standard-Geh%C3%A4usel%C3%BCfter-Standardgeh%C3%A4use-Konfiguration/dp/B002KTVFTE/ref=sr_1_3?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;dchild=1&amp;keywords=l%C3%BCfter&amp;qid=1616863699&amp;sr=8-3"></a>
+<p>Zum Artikel</p></td>
+</tr>
+<tr class="odd">
+<td align="left">HDMI Kabel 0,25</td>
+<td align="left">04,89€</td>
+<td align="left"><a href="https://www.amazon.de/dp/B013ICNQLQ/ref=cm_sw_em_r_mt_dp_dlC_WynTFbMCMF2GY"></a>
+<p>Zum Artikel</p></td>
+</tr>
+<tr class="even">
+<td align="left">Gesamt:</td>
+<td align="left">202,61€</td>
+<td align="left">*Nach eigenem ermessen</td>
+</tr>
+</tbody>
+</table>
 
-### Der Aufbau ist jedem selbst überlassen hier nur mein Beispiel.
+Support für Blitzlicht
+----------------------
 
-<p align="center">
-  <img src="https://github.com/MacAndMoreYT/Photoboth/blob/master/info/Boden.png?raw=true" width="600"/>
-</p>
+Seit der Photoboth Version 1 wird auch das ansteuern eines Blitzlichtes überstürzt. Dieses kann eine ganz normale Lampe oder auch eine professionelle Fotoleuchte sein. Angesteuert wird diese dann über ein PI kompatibles Relais welches auch automatisch durch die Software initialisiert wird.
 
+<table>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+<thead>
+<tr class="header">
+<th align="left">Artikel</th>
+<th align="left">Preis</th>
+<th align="left">Amazon Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Sehr Helle E27 LED</td>
+<td align="left">6,76€</td>
+<td align="left"><a href="https://www.amazon.de/gp/product/B08V8ND1VY/ref=ppx_yo_dt_b_asin_title_o05_s00?ie=UTF8&amp;psc=1"></a>
+<p>Zum Artikel</p></td>
+</tr>
+<tr class="even">
+<td align="left">Pi Relais</td>
+<td align="left">6,99€</td>
+<td align="left"><a href="https://www.amazon.de/gp/product/B07BVXT1ZK/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&amp;psc=1"></a>
+<p>Zum Artikel</p></td>
+</tr>
+<tr class="odd">
+<td align="left">Gesamt:</td>
+<td align="left">13,75€</td>
+<td align="left">*Nach eigenem ermessen</td>
+</tr>
+</tbody>
+</table>
 
-## Installation
+Tools die Benötigt werden:
+-------------------
 
-### Bitte Denkt Daran in der "raspi-config" die Picam und SSH zu Aktiviren
+- Raspberry PI OS (Frische Installation)
 
-### Clone
+- Heißkleber
 
-> Installiere Git
+- Kleine, Dünne Schrauben
 
-```shell
-$ sudo apt-get install git
-```
+- Lötkolben mit Lötzinn
 
-> Lade dir das Repo Herunter und entpacke es in dein Home Verzeichnis.
-
-```shell
-$ git clone https://github.com/MacAndMoreYT/Photoboth.git
-```
-### Setup
-
-
-> Wechsle in den entpacken Ordner und mache die Datei ausführbar.
-
-```shell
-$ cd photoboth
-```
-
-```shell
-$ sudo chmod +x install.sh
-```
-
-> Führe sie nun aus.
-
-```shell
-$ ./install.sh
-```
-> Nun bist du Fertig!
-
-
-## Verwendung
-
-Der Pi starten nach der Installation automatisch in die CLI und meldet sich an. Danach wird das Photoboth Skript gestartet und es kann mit dem druck einer beliebigen Taste ein Foto ausgelöst werden. Dieses wird nach der Ausgabe „Vielen Dank - gespeichert" in dem Ordner $HOME/photoboth/data verschoben und kann mit sftp:22 heruntergeladen werden.
-Alternativ Kann beim Start auch ein USB-Stick angesteckt werden und dieser wird automatisch in /home/pi/photoboth/data eingebunden. Daraufhin steht dieser dem System als primäres Speichermedium für die Bilder zur Verfügung und kann einfach am PC ausgelesen werden. 
-
-
-## Entwicklung
-
-Das Skript basiert auf dem im Raspberry Pi OS inbegriffenen "raspivid/ Python Picamera" und erweitert diese in formen der Automationen sowie dem Nutzererlebnis. Jeder kann sehr gerne dieses Skript erweitern und dazu beitragen. 
+- Zeit und Nerven :-)
 
 
-## FAQ
+Das Pinout
+-------------------
 
-Hier auf Git
+![](../../media/photoboth/pinout.jpg)
 
-MacAndMore: Youtube Kanahl https://www.youtube.com/channel/UCITYl7HZpDdAfpelX5oixeg
+Die Software
+-------------------
 
-Mail: macandmore100@gmail.com
+Die Software Die Software wurde von mir selbst erstellt. Es handelt sich um ein Python Skript, welches in Form eines DEB Paketes ausgeliefert wird. Dabei wird im Zuge der Installation ein Systemd-Service erstellt, welcher das Programm automatisch startet. Jeglicher code ist auf GitHub frei verfügbar und kann abgeändert sowie verbessert werden (GP3).
 
+Die Installation
+================
 
-## Credits
+1. Startart Password ändern
 
-Ich betreibe auch einen YouTube Kanal rund ums Thema Linux. Wenn ihr mich unterstützen wollt schaut gerne mal Vorbei!
+`passwd pi`
 
-https://www.youtube.com/channel/UCITYl7HZpDdAfpelX5oixeg
+2. System aktualisieren
 
-Zudem habe ich eine Website mit mehr Informationen und Anleitungen zu diesem oder anderen Projekten.
+`sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y`
 
-https://macandmore.ddnss.de
+3. Sprache, Uhrzeit und Tastaturlayout setzen
+
+`sudo dpkg-reconfigure locales keyboard-configuration tzdata`
+
+4. PiCam und SSH Aktivieren
+
+`sudo raspi-config`
+
+5. Paket herunterladen
+
+`wget https://github.com/MacAndMoreYT/Photoboth/raw/master/deb/photoboth_1_all.deb`
+
+6. Installieren
+
+`sudo apt install ./photoboth_1_all.deb`
+
+7. Reboot
+
+`sudo reboot`
+
+8. Einstellungen anpassen
+
+`sudo nano /opt/photoboth/config.json`
+
+Mögliche Einstellungen:
+-------------------
+
+- Bildschirmauflösung
+
+- Fotoauflösung
+
+- Fotoformat
+
+- Speicherort
+
+- Anzuzeigende texte
+
+- Text Größe
+
+- Schriftart
+
+- Vorschau FPS
