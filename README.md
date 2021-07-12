@@ -223,3 +223,27 @@ Mögliche Einstellungen:
 - Schriftart
 
 - Vorschau FPS
+
+- Speicherung auf USB
+
+Speichern auf USB
+-------------------
+
+1. FSTAB Eintrag erstellen
+
+`sudo nano /etc/fstab`
+
+    /dev/sda1 /media/stick vfat auto,nofail,sync,users,rw,umask=000,uid=pi,gid=users   0   0
+
+2. USB in der Config.json Aktivieren
+
+`sudo nano /opt/config.json`
+
+	"usb":"OFF",
+	"usb-path":"/media/stick/"
+
+3. Reboot
+
+`sudo reboot`
+
+### Wichtig: Solange in der fstab und config.json USB aktiviert muss beim Start der USB-Stick vorhanden sein.

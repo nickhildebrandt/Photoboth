@@ -1,0 +1,3 @@
+/dev/sda1 /media/stick vfat auto,nofail,sync,users,rw,umask=000,uid=pi,gid=users   0   0
+&&
+enable in config.json

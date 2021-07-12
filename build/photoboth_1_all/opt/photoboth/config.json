@@ -24,7 +24,9 @@
         {
         "light":"ON",
         "fps":30,
-        "pic":".png",
-	"path":"/home/pi/data/"
+        "pic":".jpg",
+	"path":"/home/pi/data/",
+	"usb":"OFF",
+	"usb-path":"/media/stick/"
         }
 }

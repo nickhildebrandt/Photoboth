@@ -7,6 +7,7 @@ import time
 import json
 from PIL import Image, ImageDraw, ImageFont
 import RPi.GPIO as GPIO
+import shutil
 
 with open("config.json") as file:
 	data = json.load(file)
@@ -26,7 +27,8 @@ light		        = data["foto"]["light"]
 fps			= data["foto"]["fps"]
 pic			= data["foto"]["pic"]
 path                    = data["foto"]["path"]
-
+usb                     = data["foto"]["usb"]
+upath			= data["foto"]["usb-path"]
 def main():
 
 	BUTTON_GPIO = 16
@@ -73,10 +75,13 @@ def main():
 					time.sleep(sleep_time)
 					text(text = one)
 					time.sleep(sleep_time)
-					date = ((path) + (time.strftime("%Y%m%d-%H%M%S")) + (pic))
+					filename = time.strftime("%Y%m%d-%H%M%S") + (pic)
+					sorce = path + filename
+					dest = upath + filename 
 					text(text = " ")
-					camera.capture((date), use_video_port=False)
-					time.sleep(sleep_time)
+					camera.capture(sorce, use_video_port=False)
+					if usb == "ON":
+						shutil.move(sorce, dest)
 					if light == "ON":
 						GPIO.output(LAMPE_GPIO, False)
 			else:
