@@ -1,7 +1,8 @@
 Photoboth
 =========
 
-### Achtung dieser Artikel ist nicht immer aktuell. Bitte beachte sattesten den Artikel auf MacAndMore: https://macandmore.ddnss.de/projekte/photoboth
+**Dieses Projekt wird nicht mehr unterstützt. Die neue Version heißt [Fotobox](https://github.com/nickhildebrandt/fotobox).**
+**This project is no longer supported. The new version is called [Fotobox](https://github.com/nickhildebrandt/fotobox).**
 
 Was ist das?
 ------------
